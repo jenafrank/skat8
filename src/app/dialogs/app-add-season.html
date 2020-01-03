@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Saison hinzufügen</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input #saison matInput placeholder="Saison-Nummer">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="saison.value" tabindex="2">Ok</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Abbrechen</button>
+</div>

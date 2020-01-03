@@ -1,0 +1,8 @@
+.spieltag {
+    font-weight: bold;
+    font-size: larger;
+}
+
+mat-grid-tile {
+    cursor:pointer;
+}

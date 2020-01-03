@@ -1,0 +1,33 @@
+.dialogselected {
+    background: darkcyan !important;
+    font-weight: bold;
+}
+
+.mat-card-title {
+    font-size: 20px;
+}
+
+.mat-accent {
+    background: #9a0034;
+}
+
+.mat-fab {
+    font-size: 18px;
+}
+
+button[disabled] {
+    color:black !important;
+}
+
+.eraseBackground {
+    background: white;
+}
+
+.example-radio-group {
+    display: inline-flex;
+    flex-direction: column;
+}
+  
+.example-radio-button {
+    margin: 5px;
+}

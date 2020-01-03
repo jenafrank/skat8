@@ -1,0 +1,126 @@
+
+<ng-container *ngIf="auth.user() !== null">
+
+<!-- Alle Spieler in Runde -->
+<mat-card>
+  <mat-card-title>
+    Alle Spieler in Runde
+  </mat-card-title>
+  <mat-card-content>
+    <button mat-mini-fab [matMenuTriggerFor]="menu" (click)="menuhelper=0;">{{playersInView[0]}}</button>
+    <button mat-mini-fab [matMenuTriggerFor]="menu" (click)="menuhelper=1;">{{playersInView[1]}}</button>
+    <button mat-mini-fab [matMenuTriggerFor]="menu" (click)="menuhelper=2;">{{playersInView[2]}}</button>
+    <button mat-mini-fab *ngIf="players.length > 2" [matMenuTriggerFor]="menu" (click)="menuhelper=3;">{{playersInView[3]}}</button>
+    <button mat-mini-fab *ngIf="players.length > 3" [matMenuTriggerFor]="menu" (click)="menuhelper=4;">{{playersInView[4]}}</button>
+    
+    <mat-menu #menu="matMenu">
+        <mat-grid-list cols="5" gutterSize="3px">
+          <mat-grid-tile *ngFor="let el of meaningfulPlayers()" style="background: light-blue" (click)="selectPlayer(el);">
+            <div style="cursor: pointer;font-weight: bold;font-family:Arial, Helvetica, sans-serif;">{{el}}</div>
+          </mat-grid-tile>
+        </mat-grid-list>
+    </mat-menu>
+
+  </mat-card-content>
+</mat-card>
+
+<!-- Mitspieler = Gegenspieler + Alleinspieler -->
+<mat-card>
+  <mat-card-title>
+    Mitspieler
+  </mat-card-title>
+  <mat-card-content>
+    <button mat-mini-fab *ngFor="let ply of players" style="margin-left: 5px;" [ngClass]="{'dialogselected': activeThree.indexOf(ply) != -1}"
+            (click)="toggle(ply)">
+     {{ply}}
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="activeThree.indexOf(declarer) != -1">
+    <mat-card-title>Kontra</mat-card-title>
+    <mat-card-content>
+      <button style="margin-right:5px;" mat-mini-fab *ngFor="let ply of kontraPlys()" [ngClass]="{'dialogselected': kontra == ply}" (click)="kontra=(kontra==ply)?' ':ply">
+        {{ply}}
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+<mat-card>
+    <mat-card-title>
+        Alleinspieler
+      </mat-card-title>
+  <mat-card-content>
+    <button style="margin-right:5px;" mat-mini-fab *ngFor="let ply of activeThree" [ngClass]="{'dialogselected': declarer == ply}"
+      (click)="togglePly(ply)">
+      {{ply}}
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-title>
+        Punkte
+      </mat-card-title>
+  <mat-card-content>
+    <div style="width:100%; overflow-y: hidden; height: 80px;">
+      <div style="width:3000px;">
+        <button style="margin-right:5px;" mat-mini-fab *ngFor="let pnt of points" [ngClass]="{'dialogselected': selectedPoints == pnt}"
+          (click)="selectedPoints=pnt;">
+          {{pnt}}
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<table>
+  <tr>
+    <td style="width:100%">
+        <!-- OK Button if valid data set -->
+      <button mat-fab color="primary" *ngIf="validate()" (click)="editMode=2;onOkClick()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-fab disabled *ngIf="!validate()">
+          <mat-icon>add</mat-icon>
+        </button>    
+    </td>
+    <td>
+      <mat-form-field style="max-width:70px">
+        <input #inputDeclarer matInput placeholder="" (keyup)="declarer=inputDeclarer.value" [value]="declarer" style="font-size: xx-large;text-align: center;">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field style="max-width:70px">
+        <input #inputPunkte matInput placeholder="" (keyup)="selectedPoints=inputPunkte.value" [value]="selectedPoints" style="font-size: xx-large;text-align: center;">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field style="max-width:70px">
+        <input #inputKontra matInput placeholder="" (keyup)="kontra=inputKontra.value" [value]="kontra" style="font-size: xx-large;text-align: center;">
+      </mat-form-field>
+    </td>
+    <td>
+      <!-- OK Button if valid data set -->
+      <button mat-fab color="primary" *ngIf="validate()" (click)="onOkClick()">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-fab disabled *ngIf="!validate()">
+        <mat-icon>mode_edit</mat-icon>
+      </button>    
+    </td>
+  </tr>
+  <tr>      
+    <td style="width:100%">
+      <!-- OK Button if valid data set -->
+      <button mat-fab color="primary" *ngIf="validate()" (click)="remove()">
+        <mat-icon>remove</mat-icon>
+      </button>
+      <button mat-fab disabled *ngIf="!validate()">
+        <mat-icon>remove</mat-icon>
+      </button>    
+    </td>
+  </tr>
+</table>
+
+</ng-container>

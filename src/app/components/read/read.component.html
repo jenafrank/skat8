@@ -1,0 +1,28 @@
+<mat-sidenav-container>
+
+  <div style="height: 80vh;">
+    <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+  
+  <mat-sidenav #sidenav mode="over" opened="false" [(opened)]="sideNavOpened">
+    <button mat-menu-item (click)="goEdit()"><mat-icon>arrow_forward</mat-icon>Spieltage</button>
+    <hr>
+    <button *ngFor="let el of labelsSpecial" mat-menu-item (click)="currentPlotKey=el;currentPlotValue=this.labels.get(el);plot.plot(currentPlotKey);sidenav.toggle();">
+      <mat-icon>timeline</mat-icon>{{el}}
+    </button>    
+    <hr>
+    <button *ngFor="let el of labelkeys" mat-menu-item (click)="currentPlotKey=el;currentPlotValue=this.labels.get(el);plot.plot(currentPlotKey);sidenav.toggle();">
+      <mat-icon>equalizer</mat-icon>{{el}}
+    </button>    
+    <hr>
+    <button mat-menu-item (click)="goGrossmeister()"><mat-icon>filter_vintage</mat-icon>Alle Großmeister</button>
+
+  </mat-sidenav>
+
+</mat-sidenav-container>
+
+<mat-toolbar *ngIf="dataService.seasonDateSpan!=null" color="primary">
+  <span class="example-spacer"></span>
+  <span> {{dataService.seasonDateSpan}}</span>
+  <span class="example-spacer"></span>  
+</mat-toolbar>

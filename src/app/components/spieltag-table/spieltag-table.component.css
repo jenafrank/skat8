@@ -1,0 +1,29 @@
+.rowMargin {
+    background: #d8d8d8;
+    border-top: 2px;
+    border-style: solid;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.rowStyle {
+    margin: 0;
+    min-height: 38px;
+}
+
+.boldNames {
+    font-weight: bold;
+    font-size: large;
+}
+
+.marginNames {
+    margin-top: 20px;
+}
+
+.fixedColWidth {
+    max-width: 50px;
+}
+
+mat-header-row {
+    display:none;
+}

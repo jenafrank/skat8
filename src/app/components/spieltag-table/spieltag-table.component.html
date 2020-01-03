@@ -1,0 +1,93 @@
+<mat-card>  
+  <mat-card-content>
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Declarer Column -->
+      <ng-container matColumnDef="declarer">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="fixedColWidth">
+          {{element.spieler}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Points Column -->
+      <ng-container matColumnDef="points">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="fixedColWidth">
+          {{element.punkte}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Nr Column -->
+      <ng-container matColumnDef="nr">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span style="font-size:smaller;">{{element.nr}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- NrInRound Column -->
+      <ng-container matColumnDef="nrInRound">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span style="font-size:smaller;">{{element.nrInRound}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Ply 1 -->
+      <ng-container matColumnDef="ply1">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [ngClass]="{'boldNames': boldNames(element)}"> {{element.ply1}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Ply 2 -->
+      <ng-container matColumnDef="ply2">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [ngClass]="{'boldNames': boldNames(element)}"> {{element.ply2}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Ply 3 -->
+      <ng-container matColumnDef="ply3">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [ngClass]="{'boldNames': boldNames(element)}"> {{element.ply3}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Ply 4 -->
+      <ng-container matColumnDef="ply4">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [ngClass]="{'boldNames': boldNames(element)}"> {{element.ply4}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Ply 5 -->
+      <ng-container matColumnDef="ply5">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span [ngClass]="{'boldNames': boldNames(element)}"> {{element.ply5}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Interaktion -->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element"> EDIT </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="rowStyle" (click)="selectRow(row)" [ngClass]="{'rowMargin': rowMargin(row), 'marginNames': boldNames(row) }">
+      </mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-title>
+    Spieltage
+  </mat-card-title>
+
+  <mat-card-content>
+      <mat-grid-list cols="4" gutterSize="3px" rowHeight="100px">
+          <mat-grid-tile *ngFor="let i of days" (click)="goSpieltag(i)">
+            <span class="spieltag"> {{i}} </span>
+            </mat-grid-tile>            
+       <mat-grid-tile *ngIf="auth.user() !== null" (click)="addDay();" style="background:#99ff99">
+          <mat-icon>add</mat-icon>
+       </mat-grid-tile>
+       <mat-grid-tile *ngIf="auth.user() !== null" (click)="removeDay();" style="background:#ff7070">
+           <mat-icon>remove</mat-icon>
+        </mat-grid-tile>  
+      </mat-grid-list>       
+  </mat-card-content>
+</mat-card>
+

@@ -1,4 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.cdk-overlay-pane {
+  top: 0px;
+  right: 0px;
+}
+
+.mat-menu-panel {
+  width: 250px;
+  background: darkcyan;
+}
+
+mat-grid-tile {
+  background: lightblue;
+}
+
+mat-grid-list {
+  background: darkcyan;
+}

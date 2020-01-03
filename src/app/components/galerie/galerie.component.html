@@ -1,0 +1,11 @@
+<mat-card *ngFor="let meister of meisters" style="margin-top:10px">
+  <mat-card-title>
+    {{meister.name}}
+  </mat-card-title>
+  <mat-card-content>
+    <mat-icon *ngFor="let star of meister.spielzeiten" style="color: steelblue">star_rate</mat-icon>      
+    <p>In den Spielzeiten      
+       {{meister.spielzeiten.join(", ")}}      
+    </p>
+  </mat-card-content>  
+</mat-card>
