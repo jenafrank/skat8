@@ -59,7 +59,7 @@ export class ReadComponent implements OnInit, OnDestroy {
   constructor(
     private logic: LogicService,
     private router: Router,
-    private plot: PlotService,
+    public plot: PlotService,
     public dataService: DataService,
     private auth: AuthenticationService,
     private global: GlobalService) { }

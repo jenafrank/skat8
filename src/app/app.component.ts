@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     public dataService: DataService,
     public dialog: MatDialog,
     private router: Router,
-    private global: GlobalService,
+    public global: GlobalService,
     public auth: AuthenticationService) { }
 
   goUpState() {
