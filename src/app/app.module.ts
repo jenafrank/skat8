@@ -5,7 +5,7 @@ import { AppComponent, AppSeasonAdd, AppSeasonRemove } from './app.component';
 import { environment } from "../environments/environment";
 
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 
 import {
@@ -100,18 +100,22 @@ const appRoutes: Routes = [
     ),
 
     BrowserModule,
+    BrowserAnimationsModule,
+    
+    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    
+    FlexLayoutModule,
+    
     MatToolbarModule,
     MatSelectModule,
     MatMenuModule,
     MatIconModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatSidenavModule,
     MatGridListModule,
     MatCardModule,
-    FlexLayoutModule,
     MatTableModule,
     MatButtonToggleModule,
     MatDialogModule,
@@ -128,7 +132,7 @@ const appRoutes: Routes = [
     AppGameRemove
   ],
 
-  providers: [AngularFireAuth],
+  providers: [],
   bootstrap: [AppComponent]
 
 })
