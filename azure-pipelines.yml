@@ -1,0 +1,43 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'dist/'
+  displayName: "Npm install in the dist folder for express"
+
+- task: FtpUpload@2
+  inputs:
+    credentialsOption: 'inputs'
+    serverUrl: 'ftps://waws-prod-am2-289.ftp.azurewebsites.windows.net/site/wwwroot'
+    username: 'gutblatt\$gutblatt'
+    password: '8geMfxl3KzomkuDtHwcDk1L2SMe44nCPwuXLveRljnwNwuBzuwobJMMz0yMe'
+    rootDirectory: 'dist/'
+    filePatterns: '**'
+    remoteDirectory: '/site/wwwroot/'
+    clean: false
+    cleanContents: false
+    preservePaths: false
+    trustSSL: false
+
