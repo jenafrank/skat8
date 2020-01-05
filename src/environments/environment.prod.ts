@@ -11,6 +11,6 @@ export const environment = {
     storageBucket: "luminous-inferno-9676.appspot.com",
     messagingSenderId: "347166834765"
     
-  }
+  }  
 
 };
