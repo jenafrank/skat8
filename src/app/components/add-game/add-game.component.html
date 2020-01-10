@@ -1,15 +1,14 @@
-
 <mat-toolbar *ngIf="auth.user() !== null" class="second-toolbar">
-    
-  <button mat-mini-fab color="warn" *ngIf="!lockOpen"> 
+
+  <button mat-mini-fab color="warn" *ngIf="!lockOpen">
     <mat-icon (click)="lockOpen=true">
       lock
     </mat-icon>
   </button>
   <button *ngIf="lockOpen" mat-mini-fab color="primary">
     <mat-icon (click)="lockOpen=false">
-        lock_open
-      </mat-icon>
+      lock_open
+    </mat-icon>
   </button>
 
   <div class="example-spacer"></div>
@@ -18,8 +17,10 @@
     <button mat-mini-fab [matMenuTriggerFor]="menu" (click)="menuhelper=0;">{{players[0]}}</button>
     <button mat-mini-fab [matMenuTriggerFor]="menu" (click)="menuhelper=1;">{{players[1]}}</button>
     <button mat-mini-fab [matMenuTriggerFor]="menu" (click)="menuhelper=2;">{{players[2]}}</button>
-    <button mat-mini-fab *ngIf="players.length > 2" [matMenuTriggerFor]="menu" (click)="menuhelper=3;">{{players[3]}}</button>
-    <button mat-mini-fab *ngIf="players.length > 3" [matMenuTriggerFor]="menu" (click)="menuhelper=4;">{{players[4]}}</button>
+    <button mat-mini-fab *ngIf="players.length > 2" [matMenuTriggerFor]="menu"
+      (click)="menuhelper=3;">{{players[3]}}</button>
+    <button mat-mini-fab *ngIf="players.length > 3" [matMenuTriggerFor]="menu"
+      (click)="menuhelper=4;">{{players[4]}}</button>
   </div>
 
   <div *ngIf="!lockOpen">
@@ -31,40 +32,86 @@
   </div>
 
   <mat-menu #menu="matMenu">
-      <mat-grid-list cols="5" gutterSize="3px">
-        <mat-grid-tile *ngFor="let el of meaningfulPlayers()" style="background: light-blue" (click)="selectPlayer(el);">
-          <div style="cursor: pointer;font-weight: bold;font-family:Arial, Helvetica, sans-serif;">{{el}}</div>
-        </mat-grid-tile>
-      </mat-grid-list>
+    <mat-grid-list cols="5" gutterSize="3px">
+      <mat-grid-tile *ngFor="let el of meaningfulPlayers()" style="background: light-blue" (click)="selectPlayer(el);">
+        <div style="cursor: pointer;font-weight: bold;font-family:Arial, Helvetica, sans-serif;">{{el}}</div>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-menu>
 
 </mat-toolbar>
 
-  <ng-container *ngIf="!lockOpen && players.length >= 3">
+<ng-container *ngIf="!lockOpen && players.length >= 3">
   <mat-card>
     <mat-card-content>
-      <button style="margin-right:5px;" mat-fab *ngFor="let ply of activeThree" [ngClass]="{'dialogselected': declarer == ply}"
-        (click)="togglePly(ply)">
+      <button style="margin-right:5px;" mat-fab *ngFor="let ply of activeThree"
+        [ngClass]="{'dialogselected': declarer == ply}" (click)="togglePly(ply)">
         {{ply}}
       </button>
     </mat-card-content>
   </mat-card>
-  
+
   <mat-card style="margin-top: 13px;">
     <mat-card-content>
       <div style="width:100%; overflow-y: hidden; height: 80px;">
         <div style="width:3000px;">
-          <button style="margin-right:5px;" mat-fab *ngFor="let pnt of points" [ngClass]="{'dialogselected': selectedPoints == pnt}"
-            (click)="selectedPoints=pnt;">
+          <button style="margin-right:5px;" mat-fab *ngFor="let pnt of points"
+            [ngClass]="{'dialogselected': selectedPoints == pnt}" (click)="selectedPoints=pnt;">
             {{pnt}}
           </button>
         </div>
       </div>
     </mat-card-content>
   </mat-card>
-  
+
+  <mat-card style="margin-top: 13px;">
+    <mat-card-content>
+      <table>
+        <tr>          
+          <td>
+            <mat-form-field style="max-width:70px">
+              <input #inputDeclarer matInput placeholder="" (keyup)="declarer=inputDeclarer.value" [value]="declarer"
+                style="font-size: xx-large;text-align: center;">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field style="max-width:70px">
+              <input #inputPunkte matInput placeholder="" (keyup)="selectedPoints=inputPunkte.value"
+                [value]="selectedPoints" style="font-size: xx-large;text-align: center;">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field style="max-width:70px">
+              <input #inputKontra matInput placeholder="" (keyup)="kontra=inputKontra.value" [value]="kontra"
+                style="font-size: xx-large;text-align: center;"
+                type="number" pattern="[0-9]*" inputmode="numeric">
+            </mat-form-field>
+          </td>
+          <td style="width:100%">
+
+          </td>
+          <td>
+            <div style="margin-top: 20px; margin-bottom: 20px;margin-right: 20px;" fxLayout="row" fxLayoutAlign="space-between center">
+    
+              <div class="example-spacer"></div>
+              
+              <button mat-fab color="primary" *ngIf="validate()" (click)="onOkClick()">
+                <mat-icon>add</mat-icon>
+              </button>
+          
+              <button mat-fab disabled *ngIf="!validate()">
+                <mat-icon>add</mat-icon>
+              </button>
+          
+            </div>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+
   <mat-expansion-panel>
-  
+
     <mat-expansion-panel-header>
       <mat-panel-title>
         Sonstiges
@@ -73,74 +120,28 @@
         Kontra oder Mitspieler einstellen
       </mat-panel-description>
     </mat-expansion-panel-header>
-  
+
     <mat-card>
       <mat-card-title>Kontra:</mat-card-title>
       <mat-card-content>
-        <button style="margin-right:5px;" mat-mini-fab *ngFor="let ply of kontraPlys()" [ngClass]="{'dialogselected': kontra == ply}" (click)="kontra=(kontra==ply)?' ':ply">
+        <button style="margin-right:5px;" mat-mini-fab *ngFor="let ply of kontraPlys()"
+          [ngClass]="{'dialogselected': kontra == ply}" (click)="kontra=(kontra==ply)?' ':ply">
           {{ply}}
         </button>
       </mat-card-content>
     </mat-card>
-  
-    <mat-card><mat-card-title>
-      Mitspieler:</mat-card-title>
-    <mat-card-content>
-      <button mat-mini-fab *ngFor="let ply of players" style="margin-left: 5px;" [ngClass]="{'dialogselected': activeThree.indexOf(ply) != -1}"
-        (click)="toggle(ply)">
-        {{ply}}
-      </button>
-    </mat-card-content>
-    </mat-card>
-  
-  </mat-expansion-panel>
-  
-  <mat-card style="margin-top: 13px;">
-    <mat-card-content>
-      <table>
-        <tr>
-          <td style="width:100%">
-  
-          </td>
-          <td>
-            <mat-form-field style="max-width:70px">
-              <input #inputDeclarer matInput placeholder="" (keyup)="declarer=inputDeclarer.value" [value]="declarer" style="font-size: xx-large;text-align: center;">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field style="max-width:70px">
-              <input #inputPunkte matInput placeholder="" (keyup)="selectedPoints=inputPunkte.value" [value]="selectedPoints" style="font-size: xx-large;text-align: center;">
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field style="max-width:70px">
-              <input #inputKontra matInput placeholder="" (keyup)="kontra=inputKontra.value" [value]="kontra" style="font-size: xx-large;text-align: center;">
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
-  
-  <div style="margin-top: 20px;" fxLayout="row" fxLayoutAlign="space-between center">
-    <div class="example-spacer"></div>
-    <button mat-fab color="primary" *ngIf="validate()" (click)="onOkClick()">
-    <mat-icon>add</mat-icon>
-    </button>
-    <button mat-fab disabled *ngIf="!validate()">
-        <mat-icon>add</mat-icon>
-      </button>    
-  </div>
-  
-  </ng-container>
 
-  <!--
-  <pre>
-      <p>Spieler in Runde (allPlayers): </p>
-      <p>Beteiligte Spieler (activeThree): </p>
-      <p>Alleinspieler (declarer):</p>
-      <p>Punkte (points):</p>
-      <p>Kontra (kontra):</p>
-      <p>Uhrzeit (time):</p>
-  </pre>
-  -->
+    <mat-card>
+      <mat-card-title>
+        Mitspieler:</mat-card-title>
+      <mat-card-content>
+        <button mat-mini-fab *ngFor="let ply of players" style="margin-left: 5px;"
+          [ngClass]="{'dialogselected': activeThree.indexOf(ply) != -1}" (click)="toggle(ply)">
+          {{ply}}
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-expansion-panel>
+
+</ng-container>

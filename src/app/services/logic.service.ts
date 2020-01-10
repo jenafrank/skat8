@@ -48,7 +48,7 @@ export class LogicService {
   currentDay: number;
   currentTotalGame: number;
 
-  constructor(private ds: DataService) {
+  constructor(public ds: DataService) {
     this.initLabels();
     this.initColors();
     this.initBorders();

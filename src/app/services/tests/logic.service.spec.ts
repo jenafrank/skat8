@@ -1,15 +1,20 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { LogicService } from '../logic.service';
+import { DataService } from '../data.service';
 
-import { LogicService } from './logic.service';
+fdescribe('LogicService', () => {
 
-describe('LogicService', () => {
+  let logicService: LogicService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [LogicService]
     });
   });
 
-  it('should be created', inject([LogicService], (service: LogicService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should be created', () => {
+    const fake = { };
+    logicService = new LogicService(fake as DataService);
+    expect(logicService).toBeTruthy();
+  });
 });

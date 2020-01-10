@@ -1,14 +1,14 @@
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { isUndefined } from 'util';
-
 import { AuthenticationService } from "../../services/authentication.service";
 import { GlobalService } from '../../services/global.service';
 import { DataService } from '../../services/data.service';
+import { Subscription } from 'rxjs';
+import { isUndefined } from 'util';
 import { GameDataRaw, GameData } from "../../services/interfaces.service";
-import { AppGameRemove } from "../edit-spieltag/edit-spieltag.component";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { AppGameRemove } from "../edit-spieltag/app-game-remove";
+
 
 @Component({
   selector: 'app-edit-game',

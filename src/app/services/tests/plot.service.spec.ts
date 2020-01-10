@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { PlotService } from './plot.service';
+import { PlotService } from '../plot.service';
 
 describe('PlotService', () => {
   beforeEach(() => {

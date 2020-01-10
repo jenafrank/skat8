@@ -5,10 +5,7 @@ import { Subscription } from "rxjs";
 import { BehaviorSubject } from "rxjs";
 
 import { AngularFireDatabase } from "@angular/fire/database";
-import { AngularFireList } from '@angular/fire/database/interfaces';
-
 import { AuthenticationService } from "./authentication.service";
-import { GameData, GameDataRaw } from './interfaces.service';
 
 import { isUndefined } from 'util';
 

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { InterfacesService } from './interfaces.service';
+import { InterfacesService } from '../interfaces.service';
 
 describe('InterfacesService', () => {
   beforeEach(() => {
