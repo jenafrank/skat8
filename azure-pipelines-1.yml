@@ -16,10 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    sudo apt-get install build-essential
-    rm -rf ~/..node-gyp
-    rm -rf ~/.npmrc
-    npm install -g @angular/cli@1.7.4
+    npm install -g @angular/cli
     npm install
     ng build --prod
   displayName: 'npm install and build'
