@@ -17,7 +17,7 @@
     },
     {
       "site": "luminous-inferno-9676",
-      "public": "dist",
+      "public": "dist/skat8",
       "ignore": [
         "firebase.json",
         "**/.*",
