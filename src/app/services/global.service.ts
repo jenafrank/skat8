@@ -14,7 +14,7 @@ export class GlobalService {
   roundPlayers3: string[]; // persist for game adding
 
   filteredRoundPlayers: string[];
-  availablePlayers: string[] = ['A', 'F', 'H', 'R', 'Ro', 'S', 'T', 'Od', 'P', 'Ra', 'Le', '😶'];
+  availablePlayers: string[] = ['A', 'F', 'H', 'R', 'Ro', 'S', 'St', 'T', 'Od', 'P', 'Ra', 'Le', '😶'];
 
   spieltag: number;
   selectedIndexTabGroup: number // Edit-Spieltag-View
@@ -26,7 +26,7 @@ export class GlobalService {
     this.spieltag = 1;
     this.toolbarMenufct = () => { console.log("defaultToolbarFct") };
     this.filteredRoundPlayers = [];
-    this.availablePlayers = ['A', 'F', 'H', 'R', 'Ro', 'S', 'T', 'Od', 'P', 'Ra', 'Le', '😶'];
+    this.availablePlayers = ['A', 'F', 'H', 'R', 'Ro', 'S', 'St', 'T', 'Od', 'P', 'Ra', 'Le', '😶'];
     this.roundPlayers1 = this.emptyRoundPlayers();
     this.roundPlayers2 = this.emptyRoundPlayers();
     this.roundPlayers3 = this.emptyRoundPlayers();
