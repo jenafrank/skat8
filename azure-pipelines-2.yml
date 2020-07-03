@@ -3,7 +3,8 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger: none
+trigger: 
+  - master
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -11,14 +12,11 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '8.x'
+    versionSpec: '12.x'
   displayName: 'Install Node.js'
 
 - script: |
-    sudo apt-get install build-essential
-    rm -rf ~/..node-gyp
-    rm -rf ~/.npmrc
-    npm install -g @angular/cli@1.7.4
+    npm install -g @angular/cli
     npm install
     ng build --prod
   displayName: 'npm install and build'
@@ -32,6 +30,10 @@ steps:
 - script: |  
     npm install -g firebase-tools
     firebase --version
+    echo a=$(Build.SourceVersion)
+    echo b=$(Build.BuildId)
+    echo c=$SHA
+    echo d=$BUILDID
     firebase deploy --token 1//03Ncp0lDmQsG9CgYIARAAGAMSNwF-L9Iruch_pED-PZmSpXqmhAveOg34_ubImcImjSAv_GYqVbh2aauRFidcv7ehQX9wIsVjmyw --only hosting:gutblatt --message "Build: $(Build.BuildNumber) \n Sha: $(Build.SourceVersion)"
   env: 
     Sha: $(Build.SourceVersion)
