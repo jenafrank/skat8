@@ -2,7 +2,7 @@
   "hosting": [
     {
       "site": "gutblatt",
-      "public": "dist",
+      "public": "dist/skat8",
       "ignore": [
         "firebase.json",
         "**/.*",
