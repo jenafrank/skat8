@@ -1,38 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { auth as firebaseAuth } from 'firebase/app';
 
 @Injectable()
 export class AuthenticationService {
 
-  provider: any;
-
-  constructor(private afAuth: AngularFireAuth) { 
-    this.provider = new firebase.auth.GoogleAuthProvider();    
+  constructor(private auth: AngularFireAuth) {
   }
 
-  login():void {
-    this.afAuth.auth.signInWithPopup(this.provider);
+  login(): void {
+    this.auth.signInWithPopup(new firebaseAuth.GoogleAuthProvider());
   }
 
-  logout():void {
-    this.afAuth.auth.signOut();    
+  logout(): void {
+    this.auth.signOut();
   }
 
-  user(): any {
-    return this.afAuth.auth.currentUser;
+  user(): firebase.User {
+    return firebase.auth().currentUser;
   }
 
   username(): string {
-    return this.afAuth.auth.currentUser.displayName;
+    return firebase.auth().currentUser.displayName;
   }
 
   email(): string {
-    return this.afAuth.auth.currentUser.email;
+    return firebase.auth().currentUser.email;
   }
 
   uid(): string {
-    return this.afAuth.auth.currentUser.uid;
+    return firebase.auth().currentUser.uid;
   }
 
 }
