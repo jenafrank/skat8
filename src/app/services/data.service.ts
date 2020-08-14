@@ -102,11 +102,11 @@ export class DataService {
   }
 
   addSpieltag() {
-    const seasonStr: string = this.season(this.selectedSeason);
     let i: number = this.totalday(this.currentData);
+    i++;
+    const seasonStr: string = this.season(this.selectedSeason);
     const spieltagStr: string = this.day(i);
 
-    i++;
 
     console.log('Adding Spieltag...');
 
