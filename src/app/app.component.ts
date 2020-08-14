@@ -8,7 +8,7 @@ import { DataService } from "./services/data.service";
 import { AuthenticationService } from './services/authentication.service';
 import { GlobalService } from "./services/global.service";
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { isUndefined } from 'util';
 
 @Component({
