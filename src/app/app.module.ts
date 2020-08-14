@@ -25,7 +25,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { ReadComponent } from './components/read/read.component';
 import { MatTableModule } from '@angular/material/table';
 import { EditSpieltagComponent } from './components/edit-spieltag/edit-spieltag.component';
-import { AppGameRemove } from './components/edit-spieltag/app-game-remove';
+import { AppGameRemoveComponent } from './components/edit-spieltag/app-game-remove';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -89,7 +89,7 @@ const appRoutes: Routes = [
     SpieltagTableComponent,
     AddGameComponent,
     EditGameComponent,
-    AppGameRemove,
+    AppGameRemoveComponent,
     GalerieComponent
 
   ],
@@ -131,7 +131,7 @@ const appRoutes: Routes = [
   entryComponents: [
     AppSeasonAdd,
     AppSeasonRemove,
-    AppGameRemove
+    AppGameRemoveComponent
   ],
 
   providers: [],

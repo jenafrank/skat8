@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { MatDialogRef } from "@angular/material";
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game-remove',
   templateUrl: 'app-game-remove.html',
 })
-export class AppGameRemove {
-  constructor(public dialogRef: MatDialogRef<AppGameRemove>) { }
+export class AppGameRemoveComponent {
+  constructor(public dialogRef: MatDialogRef<AppGameRemoveComponent>) { }
 }
