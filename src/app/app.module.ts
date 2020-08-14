@@ -2,16 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent, AppSeasonAdd, AppSeasonRemove } from './app.component';
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
 
-import { AngularFireModule } from "@angular/fire";
+import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import {
   MatToolbarModule, MatSelectModule, MatMenuModule,
   MatIconModule, MatButtonModule
-} from "@angular/material";
+} from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -24,7 +25,7 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { ReadComponent } from './components/read/read.component';
 import { MatTableModule } from '@angular/material/table';
 import { EditSpieltagComponent } from './components/edit-spieltag/edit-spieltag.component';
-import { AppGameRemove } from "./components/edit-spieltag/app-game-remove";
+import { AppGameRemove } from './components/edit-spieltag/app-game-remove';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -102,13 +103,13 @@ const appRoutes: Routes = [
 
     BrowserModule,
     BrowserAnimationsModule,
-    
+
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    
+
     FlexLayoutModule,
-    
+
     MatToolbarModule,
     MatSelectModule,
     MatMenuModule,
